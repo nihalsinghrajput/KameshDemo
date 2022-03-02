@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "KameshISir"
 include ':app'
+include ':kamesh'
