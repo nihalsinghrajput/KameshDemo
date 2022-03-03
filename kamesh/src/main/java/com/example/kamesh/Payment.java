@@ -28,17 +28,9 @@ public class Payment extends AppCompatActivity {
 
     }
 
-    public void Play()
+    public static void Play(Context context)
     {
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(Payment.this, "webviewStart", Toast.LENGTH_SHORT).show();
-
-            }
-        },5000);
+        Toast.makeText(context, "webviewStart", Toast.LENGTH_SHORT).show();
     }
 }
