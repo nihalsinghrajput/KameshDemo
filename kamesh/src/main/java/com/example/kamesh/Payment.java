@@ -27,34 +27,6 @@ public class Payment extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
 
 
-
-
     }
 
-    public void Play(Context context)
-    {
-
-        final RelativeLayout layout = new RelativeLayout(context);
-
-        final RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
-                getWindowManager().getDefaultDisplay().getWidth(),
-                getWindowManager().getDefaultDisplay().getHeight());
-
-        layout.setLayoutParams(params);
-
-        setContentView(layout);
-
-
-        final WebView web = new WebView(this);
-
-        web.getSettings().setJavaScriptEnabled(true);
-
-
-        web.loadUrl("http://www.google.com");
-
-        RelativeLayout.LayoutParams webViewParams = new RelativeLayout.LayoutParams(
-                300, 100);
-        webViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-
-    }
 }
