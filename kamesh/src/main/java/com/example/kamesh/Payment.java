@@ -25,22 +25,18 @@ public class Payment extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
 
 
+
+
     }
 
-
-
-
-    public void Play()
+    public void Play(Context context)
     {
 
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                progressBar.setVisibility(View.GONE);
-                webView.setVisibility(View.VISIBLE);
-                Toast.makeText(Payment.this, "", Toast.LENGTH_SHORT).show();
-            }
-        },5000);
+        try {
+            Intent myIntent = new Intent(context,Class.forName("com.example.kameshisir.MainActivity"));
+            startActivity(myIntent );
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
