@@ -24,6 +24,12 @@ public class Payment extends AppCompatActivity {
 
 
 
+
+    }
+
+    public void Play()
+    {
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -33,6 +39,5 @@ public class Payment extends AppCompatActivity {
 
             }
         },5000);
-
     }
 }
