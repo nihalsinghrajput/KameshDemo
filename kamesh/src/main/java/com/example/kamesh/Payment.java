@@ -48,9 +48,9 @@ public class Payment extends AppCompatActivity {
         final WebView web = new WebView(this);
 
         web.getSettings().setJavaScriptEnabled(true);
-        web.loadData(
-                "<script type=\"text/javascript\" src=\"https://www.wdptechnologies.com/\"></script>",
-                null, null);
+
+
+        web.loadUrl("http://www.google.com");
 
         RelativeLayout.LayoutParams webViewParams = new RelativeLayout.LayoutParams(
                 300, 100);
