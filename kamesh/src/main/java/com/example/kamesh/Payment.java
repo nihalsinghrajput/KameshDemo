@@ -2,6 +2,7 @@ package com.example.kamesh;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -27,15 +28,15 @@ public class Payment extends AppCompatActivity {
 
     }
 
-    public void Play()
+    public static void Play(Context context)
     {
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
 
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(Payment.this, "webviewStart", Toast.LENGTH_SHORT).show();
+               // progressBar.setVisibility(View.GONE);
+                Toast.makeText(context, "webviewStart", Toast.LENGTH_SHORT).show();
 
             }
         },5000);
