@@ -59,7 +59,7 @@ public class Payment extends AppCompatActivity {
             {
                 String payment_details = getIntent().getStringExtra("payment_details");
 
-                new ApiCall(payment_details).execute();
+                new ApiCall().execute();
             }
 
         }
@@ -69,14 +69,28 @@ public class Payment extends AppCompatActivity {
     class ApiCall extends AsyncTask
     {
 
-        String params;
+        /*String params;
 
         public ApiCall(String params) {
             this.params = params;
-        }
+        }*/
 
         String url = "https://psp.digitalworld.com.sa/api/v1/test/payments/pay";
 
+
+
+        String params =
+                "{\"name\":\"Raj\",\n" +
+                        "            \"email\":\"raj@mailiinator.com\",\n" +
+                        "            \"amount\":10.00,\n" +
+                        "            \"currency\":\"SAR\",\n" +
+                        "            \"order_id\":420,\n" +
+                        "            \"card_number\":\"5105105105105100\",\n" +
+                        "            \"exp_month\":\"12\",\n" +
+                        "            \"exp_year\":\"23\",\n" +
+                        "            \"cvv\":\"999\",\n" +
+                        "            \"remark\":\"This payment is done by card ios\"\n" +
+                        "    }";
 
 
         String name;
