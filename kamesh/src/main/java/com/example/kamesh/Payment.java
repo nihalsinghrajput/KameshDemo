@@ -52,18 +52,6 @@ public class Payment extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
         layoutProgress = (RelativeLayout) findViewById(R.id.layoutProgress);
 
-
-        if (getIntent() != null)
-        {
-            if (getIntent().getStringExtra("payment_details") != null)
-            {
-                String payment_details = getIntent().getStringExtra("payment_details");
-
-
-            }
-
-        }
-
         new ApiCall().execute();
 
     }
@@ -71,13 +59,24 @@ public class Payment extends AppCompatActivity {
     class ApiCall extends AsyncTask
     {
 
-        /*String params;
 
-        public ApiCall(String params) {
-            this.params = params;
-        }*/
 
-        String url = "https://psp.digitalworld.com.sa/api/v1/test/payments/pay";
+
+
+
+
+        String name;
+        String email;
+        String amount;
+        String currency;
+        String id;
+        String number;
+        String month;
+        String year;
+        String cvv;
+        String cardType;
+        String description;
+        char quotes ='"';
 
 
 
@@ -95,18 +94,7 @@ public class Payment extends AppCompatActivity {
                         "    }";
 
 
-        String name;
-        String email;
-        String amount;
-        String currency;
-        String id;
-        String number;
-        String month;
-        String year;
-        String cvv;
-        String cardType;
-        String description;
-        char quotes ='"';
+
 
 
         JSONObject js;
@@ -172,6 +160,15 @@ public class Payment extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] objects) {
+
+
+            String url = "https://psp.digitalworld.com.sa/api/v1/test/payments/pay";
+
+
+
+
+
+
 
             String encryptedData = encryptAES("a134f83650694bf419fb78b4288c2197",json);
 
