@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -52,16 +53,61 @@ public class Payment extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
         layoutProgress = (RelativeLayout) findViewById(R.id.layoutProgress);
 
-        new ApiCall().execute();
+
+        String uName = getIntent().getStringExtra("username");
+        String  pass = getIntent().getStringExtra("password");
+        String  key_s = getIntent().getStringExtra("key");
+        String  details_josn = getIntent().getStringExtra("details");
+
+
+
+
+        if (TextUtils.isEmpty(uName))
+        {
+            Toast.makeText(Payment.this, "Payment gateway Username Required!", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(pass))
+        {
+            Toast.makeText(Payment.this, "Payment gateway Password Required!", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(key_s))
+        {
+            Toast.makeText(Payment.this, "key missing!", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(details_josn))
+        {
+            Toast.makeText(Payment.this, "data missing!", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            new ApiCall(uName,pass,key_s,details_josn).execute();
+        }
+
+
+
 
     }
+
+
 
     class ApiCall extends AsyncTask
     {
 
 
+        String username;
+        String password;
+        String key;
+        int responseCode;
+        String payment_url = "";
+        String details;
 
 
+        public ApiCall(String username,String password, String key, String detail) {
+            this.username = username;
+            this.password = password;
+            this.key = key;
+            this.details = detail;
+        }
 
 
 
@@ -80,28 +126,13 @@ public class Payment extends AppCompatActivity {
 
 
 
-        String params =
-                "{\"name\":\"Raj\",\n" +
-                        "            \"email\":\"raj@mailiinator.com\",\n" +
-                        "            \"amount\":10.00,\n" +
-                        "            \"currency\":\"SAR\",\n" +
-                        "            \"order_id\":420,\n" +
-                        "            \"card_number\":\"5105105105105100\",\n" +
-                        "            \"exp_month\":\"12\",\n" +
-                        "            \"exp_year\":\"23\",\n" +
-                        "            \"cvv\":\"999\",\n" +
-                        "            \"remark\":\"This payment is done by card ios\"\n" +
-                        "    }";
-
-
-
 
 
         JSONObject js;
         {
             try {
 
-                js = new JSONObject(params);
+                js = new JSONObject(details);
 
                 name = quotes + js.getString("name") +quotes;
                 email = quotes + js.getString("email") +quotes;
@@ -152,10 +183,7 @@ public class Payment extends AppCompatActivity {
 
 
 
-        String username = "psp_test.sgkvcacb.c2drdmNhY2I2YTc3MA==";
-        String password = "b3pFSnVJb3V3SW5QTnFneVRFSy9wQT09";
-        int responseCode;
-        String payment_url = "";
+
 
 
         @Override
@@ -165,20 +193,17 @@ public class Payment extends AppCompatActivity {
             String url = "https://psp.digitalworld.com.sa/api/v1/test/payments/pay";
 
 
+            Log.e("data>>>>",json);
 
 
 
 
+            String encryptedData = encryptAES(key,json);
 
-            String encryptedData = encryptAES("a134f83650694bf419fb78b4288c2197",json);
-
-            try {
-
-
+            /*try {
 
                 URL urlObj = new URL(url);
                 HttpURLConnection httpCon = (HttpURLConnection) urlObj.openConnection();
-
 
                 String userpass = username + ":" + password;
                 String basicAuth = null;
@@ -225,7 +250,7 @@ public class Payment extends AppCompatActivity {
 
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
 
 
             return null;
