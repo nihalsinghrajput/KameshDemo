@@ -111,83 +111,80 @@ public class Payment extends AppCompatActivity {
 
 
 
-        String name;
-        String email;
-        String amount;
-        String currency;
-        String id;
-        String number;
-        String month;
-        String year;
-        String cvv;
-        String cardType;
-        String description;
-        char quotes ='"';
-
-
-
-
-
-        JSONObject js;
-        {
-            try {
-
-                js = new JSONObject(details);
-
-                name = quotes + js.getString("name") +quotes;
-                email = quotes + js.getString("email") +quotes;
-                amount = quotes + js.getString("amount") +quotes;
-                currency = quotes + js.getString("currency") +quotes;
-                id = quotes + js.getString("order_id") +quotes;
-                number = quotes + js.getString("card_number") +quotes;
-
-                month = quotes + js.getString("exp_month") +quotes;
-                year = quotes + js.getString("exp_year") +quotes;
-                cvv = quotes + js.getString("cvv") +quotes;
-                cardType = quotes + "C" +quotes;
-                description = quotes + js.getString("remark") +quotes;
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        String json = "{\n" +
-                "\"customer\":{\n" +
-                "\"name\":"+name+",\n"+
-                "\"email\":"+email +
-                "},\n" +
-                "\"order\":{\n" +
-                "\"amount\":"+amount+",\n"+
-                "\"currency\":"+currency +",\n"+
-                "\"id\":"+id +
-                "},\n" +
-                "\"sourceOfFunds\":{\n" +
-                "\"provided\":{\n" +
-                "\"card\":{\n" +
-                "\"number\":"+number +",\n"+
-                "\"expiry\":{\n" +
-                "\"month\":"+month +",\n"+
-                "\"year\":"+year +
-                "},\n" +
-                "\"cvv\":"+cvv +
-                "}\n" +
-                "},\n" +
-                "\"cardType\":"+cardType +
-                "},\n" +
-                "\"remark\":{\n" +
-                "\"description\":"+description +
-                "}\n" +
-                "}";
-
-
-
 
 
 
         @Override
         protected Object doInBackground(Object[] objects) {
+
+
+            String name = "";
+            String email = "";
+            String amount = "";
+            String currency = "";
+            String id = "";
+            String number = "";
+            String month = "";
+            String year = "";
+            String cvv = "";
+            String cardType = "";
+            String description = "";
+            char quotes ='"';
+
+
+            JSONObject js;
+            {
+                try {
+
+                    js = new JSONObject(details);
+
+                    name = quotes + js.getString("name") +quotes;
+                    email = quotes + js.getString("email") +quotes;
+                    amount = quotes + js.getString("amount") +quotes;
+                    currency = quotes + js.getString("currency") +quotes;
+                    id = quotes + js.getString("order_id") +quotes;
+                    number = quotes + js.getString("card_number") +quotes;
+
+                    month = quotes + js.getString("exp_month") +quotes;
+                    year = quotes + js.getString("exp_year") +quotes;
+                    cvv = quotes + js.getString("cvv") +quotes;
+                    cardType = quotes + "C" +quotes;
+                    description = quotes + js.getString("remark") +quotes;
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+
+            String json = "{\n" +
+                    "\"customer\":{\n" +
+                    "\"name\":"+name+",\n"+
+                    "\"email\":"+email +
+                    "},\n" +
+                    "\"order\":{\n" +
+                    "\"amount\":"+amount+",\n"+
+                    "\"currency\":"+currency +",\n"+
+                    "\"id\":"+id +
+                    "},\n" +
+                    "\"sourceOfFunds\":{\n" +
+                    "\"provided\":{\n" +
+                    "\"card\":{\n" +
+                    "\"number\":"+number +",\n"+
+                    "\"expiry\":{\n" +
+                    "\"month\":"+month +",\n"+
+                    "\"year\":"+year +
+                    "},\n" +
+                    "\"cvv\":"+cvv +
+                    "}\n" +
+                    "},\n" +
+                    "\"cardType\":"+cardType +
+                    "},\n" +
+                    "\"remark\":{\n" +
+                    "\"description\":"+description +
+                    "}\n" +
+                    "}";
 
 
             String url = "https://psp.digitalworld.com.sa/api/v1/test/payments/pay";
