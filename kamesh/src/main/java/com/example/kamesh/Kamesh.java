@@ -11,7 +11,7 @@ public class Kamesh {
 
 
         Intent intent = new Intent(context,Payment.class);
-        context.startActivity(intent);
+        ((Activity)context).startActivityForResult(intent,500);
 
     }
 
