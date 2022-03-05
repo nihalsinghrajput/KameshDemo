@@ -197,7 +197,7 @@ public class Payment extends AppCompatActivity {
 
             String encryptedData = encryptAES(key,json);
 
-            /*try {
+            try {
 
                 URL urlObj = new URL(url);
                 HttpURLConnection httpCon = (HttpURLConnection) urlObj.openConnection();
@@ -238,16 +238,13 @@ public class Payment extends AppCompatActivity {
                     payment_url = apiResponseObject.getString("verifyUrl");
 
 
-
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
-            }*/
+            }
 
 
             return null;
