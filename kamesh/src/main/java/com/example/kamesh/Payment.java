@@ -59,10 +59,12 @@ public class Payment extends AppCompatActivity {
             {
                 String payment_details = getIntent().getStringExtra("payment_details");
 
-                new ApiCall().execute();
+
             }
 
         }
+
+        new ApiCall().execute();
 
     }
 
